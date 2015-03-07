@@ -1,7 +1,8 @@
 CREATE TABLE PERSON
 (
-	PersonID int, 
-	Name Varchar (20), 
-	Gender Varchar(20), 
-	DOB Date
+	personID int NOT NULL, 
+	name Varchar (20), 
+	gender Varchar(20), 
+	DOB Date,
+	Primary Key (personID)
 ); 

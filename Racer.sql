@@ -1,7 +1,8 @@
 CREATE TABLE RACER 
 (
-	RACERID int, 
-	RANK int CHECK (Rank > 0), 
-	Points int
+	racerID int NOT NULL, 
+	rank int CHECK (Rank > 0), 
+	points int, 
+	PRIMARY KEY (RACERID)
 
 ); 

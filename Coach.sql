@@ -1,6 +1,7 @@
 CREATE TABLE COACH 
 (
-	CoachID int, 
-	Rank int Check (Rank > 0), 
-	Salary int
+	coachID int NOT NULL, 
+	rank int Check (rank > 0), 
+	salary int,
+	Primary Key (coachID)
 );
