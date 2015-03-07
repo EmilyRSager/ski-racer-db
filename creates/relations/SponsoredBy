@@ -1,3 +1,0 @@
-CREATE TABLE SponsoredBy (
-	racerID integer NOT NULL 
-);
