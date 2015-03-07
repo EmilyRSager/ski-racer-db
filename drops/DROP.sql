@@ -1,4 +1,5 @@
-DROP TABLE Person; 
-DROP TABLE Racer;
-DROP TABLE Coach ;
+
 DROP TABLE Official;
+DROP TABLE Coach ;
+DROP TABLE Racer;
+DROP TABLE Person; 
