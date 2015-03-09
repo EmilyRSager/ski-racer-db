@@ -1,4 +1,5 @@
 \i creates/entities/CreateDB.sql
+\i creates/relations/CreateRel.sql
 \i inserts/entities/createInserts.sql
 \i views/makeViews.sql
 
