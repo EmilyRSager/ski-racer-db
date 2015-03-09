@@ -8,7 +8,7 @@ INSERT INTO Person (personID, firstName, lastName, gender, DOB)
 VALUES (333, 'Emily', 'Sager', 'F', '1993-10-27');
 
 INSERT INTO Person (personID, firstName, lastName, gender, DOB)
-VALUES (444, 'Erin', 'Callow', 'F', '1993-02-31');
+VALUES (444, 'Erin', 'Callow', 'F', '1993-02-28');
 
 INSERT INTO Person (personID, firstName, lastName, gender, DOB)
 VALUES (555, 'Ethan', 'Macdonald', 'M', '1992-07-15');

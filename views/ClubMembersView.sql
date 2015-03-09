@@ -5,8 +5,8 @@ CREATE VIEW ClubMembersView AS
 		FROM Racer, Club
 		WHERE Racer.clubName = Club.clubName
 		UNION
-		SELECT lastName, firstName
+		SELECT lastName, firstName, Club.clubName
 		FROM Coach, Club
-		WHERE Racer.clubname = Club.clubName
+		WHERE Coach.clubname = Club.clubName
 	) AS T
 	ORDER BY T.clubName;
