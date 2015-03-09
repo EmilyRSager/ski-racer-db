@@ -5,7 +5,7 @@
 \i inserts/entities/InsertPeople.sql
 \i inserts/entities/InsertRacers.sql	
 \i inserts/entities/InsertRaces.sql   
+\i inserts/entities/InsertTrails.sql
 \i inserts/entities/InsertRuns.sql
 \i inserts/entities/InsertSponsors.sql
-\i inserts/entities/InsertTrails.sql
 

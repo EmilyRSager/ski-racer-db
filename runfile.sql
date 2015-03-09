@@ -4,6 +4,7 @@
 \i views/makeViews.sql
 
 \dt
+SELECT * FROM ActiveRacers; 
 SELECT * FROM ClubMembersView;
 SELECT * FROM person;
 SELECT * FROM club;
