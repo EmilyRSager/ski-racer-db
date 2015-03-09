@@ -5,7 +5,7 @@ CREATE TABLE COACH
 	lastName varchar(30) NOT NULL,
 	rank int Check (rank > 0), 
 	salary int,
-	club integer,
+	clubName varchar(30),
 	Primary Key (coachID),
-	Foreign Key (club) References Club (clubID)
+	Foreign Key (clubName) References Club (clubName)
 );
