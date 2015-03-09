@@ -1,11 +1,11 @@
 \i Person.sql
-\i Racer.sql
+\i CreateClub.sql
 \i Coach.sql
+\i Racer.sql
 \i Official.sql
+\i CreateMountain.sql
 \i Race.sql
-\i Mountain.sql
-\i Trail.sql
-\i Run.sql
-\i Club.sql
-
+\i CreateTrail.sql
+\i CreateRun.sql
+\i CreateSponsor.sql
 
