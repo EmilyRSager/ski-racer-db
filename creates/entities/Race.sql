@@ -4,6 +4,8 @@ CREATE TABLE RACE (
 	type Varchar(20),
 	date Date, 
 	gender Varchar(20),
-	Primary Key (raceID) 
+	mountainName Varchar(255) NOT NULL,
+	Primary Key (raceID),
+	Foreign Key (mountainName) REFERENCES Mountain (name)
 
 );
