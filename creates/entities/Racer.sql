@@ -6,8 +6,8 @@ CREATE TABLE RACER
 	rank int CHECK (Rank > 0), 
 	points decimal(5,2),
 	coach integer NOT NULL,
-	club integer NOT NULL, 
+	clubName varchar(30), 
 	PRIMARY KEY (racerID),
 	FOREIGN KEY (coach) REFERENCES Coach (coachID),
-	FOREIGN KEY (club) REFERENCES Club (clubID)
+	FOREIGN KEY (clubName) REFERENCES Club (clubName)
 ); 
