@@ -1,6 +1,7 @@
 \i creates/entities/CreateDB.sql
 \i creates/relations/CreateRel.sql
 \i inserts/entities/createInserts.sql
+\i inserts/relations/insertRels.sql
 \i views/makeViews.sql
 
 \dt
