@@ -1,0 +1,6 @@
+ALTER TABLE Person
+ADD CONSTRAINT checkPersonDOB CHECK (DOB >= '1900-01-01');
+
+
+ALTER TABLE Racer
+ADD CONSTRAINT checkRacerPoints CHECK (points < 100.00);
