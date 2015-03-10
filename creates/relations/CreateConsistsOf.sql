@@ -1,6 +1,6 @@
 CREATE TABLE ConsistsOf(
 	raceID integer NOT NULL,
-	runID integer NOT NULL,
+	runNumber integer NOT NULL,
 	FOREIGN KEY (raceID) REFERENCES Race (raceID),
-	FOREIGN KEY (runID) REFERNCES Run (runID)
+	FOREIGN KEY (runNumber, raceID) REFERENCES Run (runNumber, raceID)
 );
