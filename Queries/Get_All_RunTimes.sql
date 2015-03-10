@@ -1,13 +1,13 @@
-SELECT RacerID, RunID, runTime
+SELECT RacerID, runNum.runNumber, time
 
 FROM (
-		(
-			SELECT RunID 
+			(SELECT runNumber
 			FROM ConsistsOf
-			WHERE RaceID = myID)
+			WHERE RaceID = 34567) AS runNum 
 
 			INNER JOIN 
 
-			(HasTime)
-	) 
-
+			(SELECT * FROM HasTime) AS t
+			ON runNum.runNumber = t.runNumber
+	)
+; 
