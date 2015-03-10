@@ -1,7 +1,4 @@
-/**
-Selects all racers that have raced at any race Burke Mountain
-
-**/
+/* Selects all racers that have raced at any race Burke Mountain */
 
 SELECT DISTINCT lastName, firstName
 FROM Racer, CompetesIn
