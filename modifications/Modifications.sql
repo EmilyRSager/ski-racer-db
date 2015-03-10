@@ -15,13 +15,13 @@ WHERE officialID IN (
 	HAVING COUNT(*) > 2
 );
 
-/* Raise salary of coaches at a club where every coach has rank above 5 */
+/* Raise salary of coaches at a club where every coach has rank above 8 */
 UPDATE Coach
 SET salary = 150000
-WHERE clubName IN (
+WHERE clubName NOT EXISTS (
 	SELECT clubName
 	FROM Coach
-
+	WHERE rank < 8
 );
 
 /*Insert all coaches and racers into Person, give them the same IDs*/
