@@ -1,11 +1,14 @@
 /*
-For each the Race, get all the racers in that race
-for each racer find all their runs in that race
-find the times for each of those runs, add them 
-the winner is the lowest added run time (order by runtime) 
+Find the winner of the second run of a race
 */
 
-
+SELECT lastName, firstName, time FROM
+FROM Racer INNER JOIN HasTime
+WHERE time = (
+    SELECT MIN(H.time)
+    FROM HasTime INNER JOIN H, CompetesIn AS C
+    WHERE H.racerID = C.racerID AND H.raceID = C.raceID AND HasTime.runNumber = 2 AND C
+);
 
 
 
