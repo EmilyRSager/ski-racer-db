@@ -1,0 +1,15 @@
+Erin Callow - 260516474
+Emily Sager - 260501412
+Charlie Bloomfield - 260520615
+
+To run our database and see outputted results, run in postgreSQL with the command:
+\i runfile.sql
+
+To sources files can be accessed inside the folders:
+
+creates
+inserts
+modifications
+Queries
+
+ 
