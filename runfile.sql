@@ -3,7 +3,7 @@
 \i inserts/entities/createInserts.sql
 \i inserts/relations/insertRels.sql
 \i views/makeViews.sql
-\i Queries/createQueries.sql
+-- \i Queries/createQueries.sql
 
 \dt
 SELECT * FROM ActiveRacers; 
