@@ -43,21 +43,17 @@ public class OptionMenu {
 		}
 		if (lSelectedOption.equals("3"))
 		{
-			QueryWinnerOfRace(); 
+			QueryAllRunTimes();
 		}
 		if (lSelectedOption.equals("4"))
 		{
-			QueryAllRunTimes();
-		}
-		if (lSelectedOption.equals("5"))
-		{
 			getTable(); 
-		}
-		if (lSelectedOption.equals("6"))
+		} 
+		if (lSelectedOption.equals("5"))
 		{
 			QueryTwoRaces(); 
 		}
-		if (lSelectedOption.equals("7"))
+		if (lSelectedOption.equals("6"))
 		{
 			userWantsToQuit = true; 
 		}
@@ -71,8 +67,7 @@ public class OptionMenu {
 	{
 		System.out.println("Please enter the Table you'd like to view");
 		String lTable = receiveUserInput();
-		aSkiDB.getTable(lTable);
-		
+		aSkiDB.getTable(lTable);	
 	}
 
 	private void QueryAllRunTimes() 
@@ -82,18 +77,11 @@ public class OptionMenu {
 		aSkiDB.AllRuntimes(RaceID);
 	}
 	
-	private void QueryWinnerOfRace() 
+	private void QueryRacersOnMountain() 
 	{
-		System.out.println("Please enter the RaceID:");
-		String RaceID = receiveUserInput();
-		//Call Charlie's Code
-	}
-	
-	private void QueryRacersOnMountain() {
 		System.out.println("Please enter the Mountain Name:");
 		String lMountainName = receiveUserInput();
 		aSkiDB.RacerOnMountain(lMountainName);
-
 	}
 	
 	private void QueryCoachesForAGivenClub() 
@@ -109,11 +97,10 @@ public class OptionMenu {
 		System.out.println("Please enter the option number for one of the options displayed below: ");
 		System.out.println(" 1. " + aCoachesForAGivenClub);
 		System.out.println(" 2. " +  aRacersOnMountain);
-		System.out.println(" 3. " + aWinnerOfRace);
-		System.out.println(" 4." +  aAllRuntimes);
-		System.out.println("5. " + "Returns all the entries in a table"  );
-		System.out.println("6. Fuk");
-		System.out.println("7. Quit");
+		System.out.println(" 3." +  aAllRuntimes);
+		System.out.println("4. " + "Returns all the entries in a table"  );
+		System.out.println("5. Returns all racers who have competed in at least two races");
+		System.out.println("6. Quit");
 
 	}
 	public String receiveUserInput()
