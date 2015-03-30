@@ -55,9 +55,18 @@ public class OptionMenu {
 		}
 		if (lSelectedOption.equals("6"))
 		{
+			QueryTwoRaces(); 
+		}
+		if (lSelectedOption.equals("7"))
+		{
 			userWantsToQuit = true; 
 		}
 	}
+	private void QueryTwoRaces() 
+	{
+		aSkiDB.twoRaces();
+	}
+
 	private void getTable() 
 	{
 		System.out.println("Please enter the Table you'd like to view");
@@ -103,7 +112,8 @@ public class OptionMenu {
 		System.out.println(" 3. " + aWinnerOfRace);
 		System.out.println(" 4." +  aAllRuntimes);
 		System.out.println("5. " + "Returns all the entries in a table"  );
-		System.out.println("6. Quit");
+		System.out.println("6. Fuk");
+		System.out.println("7. Quit");
 
 	}
 	public String receiveUserInput()
