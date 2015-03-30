@@ -1,21 +1,13 @@
---retreives racers who have competed in at least 2 races this year
+--retreives racers who have competed in at least 2 races
 
- SELECT racerID
- FROM
- (
-	(
-		SELECT  racerID, COUNT(racerID), raceID AS X
-		FROM CompetesIn 
-		GROUP BY racerID
-		HAVING COUNT(racerID) >= 2
-	)
-
-	INNER JOIN
-
-	(
-		SELECT raceID AS Y
-		FROM Race 
-		WHERE date > '2015-01-01'
-	)
-	ON X.raceID = Y.raceID
-);
+SELECT C.racerID, C.raceID
+FROM (
+	SELECT racerID
+	FROM CompetesIn
+	--date
+	GROUP BY racerID
+	HAVING COUNT(*) > 1
+) 
+AS CurrentRacer 
+INNER JOIN CompetesIn C 
+ON C.racerID = CurrentRacer.racerID
