@@ -6,6 +6,7 @@ package network;
 
 import java.sql.DriverManager;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -32,7 +33,7 @@ public class DatabaseCommunicator
 		{
 			aConnection = DriverManager.getConnection(
 					"jdbc:postgresql://db2.cs.mcgill.ca:5432/CS421", //host
-					"cbloom7", "*s5W&4vG"
+					"ecallo1", "rFIbIPY*"
 					//	"cs421g34", //username
 					//	"cisicvijo" //password
 					);
@@ -41,6 +42,18 @@ public class DatabaseCommunicator
 		{
 			System.out.println("Failed to connect to the database server.");
 		}
+	}
+	
+	public ResultSet getRacer(String pFirstName, String pLastName){
+		try {
+			Statement lQuery = aConnection.createStatement();
+			ResultSet lResultSet = lQuery.executeQuery("SELECT racerID FROM Racer WHERE firstName = '" + pFirstName + "' AND lastName = '" + pLastName + "'");
+			return lResultSet;
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 
@@ -57,7 +70,7 @@ public class DatabaseCommunicator
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void CoachesForClub (String pClubName)
 	{
 
@@ -70,22 +83,6 @@ public class DatabaseCommunicator
 							"FROM Coach " + 
 							"WHERE clubName = '" + pClubName + "'"
 					);
-			FormatResults(lResultSet);
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-	}
-
-	public void WinnerOfRace (String pRaceID)
-	{
-		int lRaceID = Integer.parseInt(pRaceID);
-		try 
-		{ 
-			Statement lQuery = aConnection.createStatement(); 
-			ResultSet lResultSet = lQuery.executeQuery(""); //TODO 
-
 			FormatResults(lResultSet);
 		}
 		catch (SQLException e)
@@ -123,13 +120,16 @@ public class DatabaseCommunicator
 		{
 			Statement lQuery = aConnection.createStatement(); 
 			ResultSet lResultSet = lQuery.executeQuery(
-					new StringBuilder()
-					.append("SELECT CurrentRacers.racerID, COUNT(racerID), raceID ")
-					.append("FROM ")
-					.append("(SELECT CompetesIn.racerID, COUNT(racerID)  FROM CompetesIn GROUP BY racerID HAVING COUNT(racerID) > 2) AS CurrentRacers ")
-					.append("INNER JOIN Racer R ON R.racerID = CurrentRacers.racerID ")
-					.toString()
-					); 
+					"SELECT C.racerID, C.raceID " +  
+							"FROM ( " +
+							"SELECT racerID " +
+							"FROM CompetesIn " +
+							"GROUP BY racerID " +
+							"HAVING COUNT(*) > 1 " +
+					") " +
+					"AS CurrentRacer " +  
+					"INNER JOIN CompetesIn C " +
+					"ON C.racerID = CurrentRacer.racerID ");		
 			FormatResults(lResultSet);
 		}
 		catch (SQLException e)
@@ -137,7 +137,7 @@ public class DatabaseCommunicator
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void AllRuntimes(String  pRaceID)
 	{
 		try 
@@ -145,14 +145,14 @@ public class DatabaseCommunicator
 			Statement lQuery = aConnection.createStatement(); 
 			ResultSet lResultSet = lQuery.executeQuery(
 					"SELECT RacerID, runNum.runNumber, time " +
-					"FROM ( " +
-					"(SELECT runNumber " +
-					"FROM ConsistsOf " +
-					"WHERE RaceID = " + pRaceID + ") AS runNum " +
-								"INNER JOIN " +
-								"(SELECT * FROM HasTime) AS t "+
-								"ON runNum.runNumber = t.runNumber " +
-								")"
+							"FROM ( " +
+							"(SELECT runNumber " +
+							"FROM ConsistsOf " +
+							"WHERE RaceID = " + pRaceID + ") AS runNum " +
+							"INNER JOIN " +
+							"(SELECT * FROM HasTime) AS t "+
+							"ON runNum.runNumber = t.runNumber " +
+							")"
 					);
 			FormatResults(lResultSet);
 		}
@@ -161,7 +161,7 @@ public class DatabaseCommunicator
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Parses a ResultSet into an SSV
 	 * @param pResultSet
@@ -191,5 +191,28 @@ public class DatabaseCommunicator
 				System.out.println("");
 			}
 		}
+	}
+
+	public void addRacer(String lRacerID, String lFirstName, String lLastName,
+			int i, double d, String lCoach, String lClub) {
+		int x = Integer.parseInt(lRacerID);
+		try 
+		{
+			PreparedStatement lPreparedStatement  = aConnection.prepareStatement("INSERT INTO RACER (racerID, firstName, lastName,  coach, clubName, rank, points) "
+					+ "VALUES (?, ?, ? , ? , ?,  ?, ? )" );
+			lPreparedStatement.setInt(1, Integer.parseInt(lRacerID));
+			lPreparedStatement.setString(2, lFirstName);
+			lPreparedStatement.setString(3, lLastName);
+			lPreparedStatement.setInt(4,Integer.parseInt( lCoach));
+			lPreparedStatement.setString(5, lClub);
+			lPreparedStatement.setInt(6, 1000);
+			lPreparedStatement.setDouble(7, 999.99);
+			System.out.println("[psql] Insert Successful.");
+		}
+		catch (SQLException e)
+		{
+			System.out.println("Unable to Insert:  " + e.getMessage());
+		}
+		
 	}
 }
