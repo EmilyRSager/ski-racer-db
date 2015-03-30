@@ -1,6 +1,11 @@
+/**
+ * @author emilysager, itscharlieb
+ */
 package GUI;
 
 import java.util.Scanner;
+
+import network.DatabaseCommunicator;
 
 public class OptionMenu {
 
@@ -9,6 +14,7 @@ public class OptionMenu {
 	private String aWinnerOfRace; 
 	private String aAllRuntimes; 
 	private boolean userWantsToQuit; 
+	private DatabaseCommunicator aSkiDB; 
 
 	public OptionMenu () 
 	{ 
@@ -17,6 +23,7 @@ public class OptionMenu {
 		aWinnerOfRace = "Returns the winner of a given race"; 
 		aAllRuntimes = "Returns all the runtimes for a given race"; 
 		userWantsToQuit = false;
+		aSkiDB = new DatabaseCommunicator();
 	}
 
 	public boolean doesUserWantsToquit() 
@@ -44,14 +51,26 @@ public class OptionMenu {
 		}
 		if (lSelectedOption.equals("5"))
 		{
+			getTable(); 
+		}
+		if (lSelectedOption.equals("6"))
+		{
 			userWantsToQuit = true; 
 		}
 	}
+	private void getTable() 
+	{
+		System.out.println("Please enter the Table you'd like to view");
+		String lTable = receiveUserInput();
+		aSkiDB.getTable(lTable);
+		
+	}
+
 	private void QueryAllRunTimes() 
 	{
 		System.out.println("Please enter the RaceID:");
 		String RaceID = receiveUserInput();
-		//Call Charlie's Code
+		aSkiDB.AllRuntimes(RaceID);
 	}
 	
 	private void QueryWinnerOfRace() 
@@ -63,16 +82,16 @@ public class OptionMenu {
 	
 	private void QueryRacersOnMountain() {
 		System.out.println("Please enter the Mountain Name:");
-		String MountainName = receiveUserInput();
-		// Call Charlie's Code
+		String lMountainName = receiveUserInput();
+		aSkiDB.RacerOnMountain(lMountainName);
 
 	}
 	
 	private void QueryCoachesForAGivenClub() 
 	{
-		System.out.println("Please enter the ClubID:");
-		String ClubID = receiveUserInput();
-		//Call Charlies code
+		System.out.println("Please enter the ClubName:");
+		String lClubName = receiveUserInput();
+		aSkiDB.CoachesForClub(lClubName);
 	}
 	
 
@@ -83,7 +102,8 @@ public class OptionMenu {
 		System.out.println(" 2. " +  aRacersOnMountain);
 		System.out.println(" 3. " + aWinnerOfRace);
 		System.out.println(" 4." +  aAllRuntimes);
-		System.out.println("5. Quit");
+		System.out.println("5. " + "Returns all the entries in a table"  );
+		System.out.println("6. Quit");
 
 	}
 	public String receiveUserInput()
