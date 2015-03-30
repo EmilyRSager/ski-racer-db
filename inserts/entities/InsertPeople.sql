@@ -13,3 +13,8 @@ VALUES (444, 'Erin', 'Callow', 'F', '1993-02-28');
 INSERT INTO Person (personID, firstName, lastName, gender, DOB)
 VALUES (555, 'Ethan', 'Macdonald', 'M', '1992-07-15');
 
+INSERT INTO Person (personID, firstName, lastName, gender, DOB)
+VALUES (666, 'Fred', 'Johnson', 'M', '1988-07-15');
+
+
+
